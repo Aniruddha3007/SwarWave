@@ -467,12 +467,11 @@ body {
   border-radius: 4px;
   width: 0%;
   pointer-events: none;
-  transition: width 0.5s linear;
 }
 .progress-thumb {
   position: absolute;
-  top: 50%; right: -5px;
-  transform: translate(0, -50%);
+  top: 50%; right: 100%;
+  transform: translate(50%, -50%);
   width: 10px; height: 10px;
   background: #fff;
   border-radius: 50%;
@@ -610,11 +609,10 @@ body {
 <div class="toast" id="toast"></div>
 
 <div class="app">
-  <!-- Sidebar -->
   <nav class="sidebar">
     <div class="logo">
       <div class="logo-mark">
-        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm0 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 7c-1.657 0-3.13-.825-4-2.083C4.02 8.625 6.376 8 8 8c1.625 0 3.98.625 4 1.917C11.13 11.175 9.657 12 8 12z" fill="#000"/></svg>
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2C4.686 2 2 4.686 2 8s2.686 6 6 6 6-2.686 6-6-2.686-6-6-2.686zm0 3a1.5 1.5 0 110 3 1.5 1.5 0 010-3zm0 7c-1.657 0-3.13-.825-4-2.083C4.02 8.625 6.376 8 8 8c1.625 0 3.98.625 4 1.917C11.13 11.175 9.657 12 8 12z" fill="#000"/></svg>
       </div>
       <span class="logo-name">SwarWave</span>
     </div>
@@ -644,7 +642,6 @@ body {
   </nav>
 
   <div class="main">
-    <!-- Topbar -->
     <div class="topbar">
       <div class="topbar-nav">
         <div class="nav-arrow" onclick="history.back()">
@@ -663,17 +660,15 @@ body {
       </div>
     </div>
 
-    <!-- Content -->
     <div class="content">
 
-      <!-- HOME -->
       <div class="page active" id="page-home">
         <div class="featured">
-          <div class="feat-art g1" style="font-size:36px;">🌙</div>
+          <div class="feat-art g1" style="font-size:36px;">🎬</div>
           <div class="feat-info">
             <div class="feat-tag">Featured Album</div>
-            <div class="feat-title">After Hours</div>
-            <div class="feat-sub">The Weeknd · 2020 · 14 tracks</div>
+            <div class="feat-title">Dhurandhar OST</div>
+            <div class="feat-sub">Various Artists · 2026 · 2 tracks</div>
             <div class="feat-actions">
               <button class="btn-primary" onclick="playTrack(0)">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -697,7 +692,6 @@ body {
         <div class="track-list" id="home-tracklist"></div>
       </div>
 
-      <!-- SEARCH -->
       <div class="page" id="page-search">
         <div class="section-title">Search</div>
         <div class="section-sub">Find your next favourite track</div>
@@ -715,7 +709,6 @@ body {
         </div>
       </div>
 
-      <!-- LIBRARY -->
       <div class="page" id="page-library">
         <div class="section-title">Your Library</div>
         <div class="section-sub">Your saved music, all in one place</div>
@@ -732,7 +725,6 @@ body {
 
     </div>
 
-    <!-- Player bar -->
     <div class="player-bar">
       <div class="player-left">
         <div class="player-art g1" id="player-art">🎵</div>
@@ -791,53 +783,51 @@ body {
 <script>
 // ── Data ──
 const TRACKS = [
-  { id:0, title:"Blinding Lights", artist:"The Weeknd", album:"After Hours", duration:200, emoji:"🌙", color:"g1" },
-  { id:1, title:"Starboy", artist:"The Weeknd", album:"Starboy", duration:230, emoji:"⭐", color:"g2" },
-  { id:2, title:"Save Your Tears", artist:"The Weeknd", album:"After Hours", duration:215, emoji:"💧", color:"g3" },
-  { id:3, title:"Midnight Drive", artist:"The Weeknd", album:"Dawn FM", duration:252, emoji:"🚗", color:"g4" },
-  { id:4, title:"Die For You", artist:"The Weeknd", album:"Starboy", duration:260, emoji:"❤️", color:"g5" },
-  { id:5, title:"Take My Breath", artist:"The Weeknd", album:"Dawn FM", duration:221, emoji:"🌬️", color:"g6" },
-  { id:6, title:"Sacrifice", artist:"The Weeknd", album:"Dawn FM", duration:190, emoji:"🔥", color:"g1" },
-  { id:7, title:"Out of Time", artist:"The Weeknd", album:"Dawn FM", duration:210, emoji:"⏳", color:"g2" },
-  { id:8, title:"Gasoline", artist:"The Weeknd", album:"Dawn FM", duration:235, emoji:"⛽", color:"g3" },
-  { id:9, title:"Is There Someone Else?", artist:"The Weeknd", album:"Dawn FM", duration:195, emoji:"🔮", color:"g4" },
-  { id:10, title:"Espresso", artist:"Sabrina Carpenter", album:"Short n' Sweet", duration:175, emoji:"☕", color:"g5" },
-  { id:11, title:"Good Luck, Babe!", artist:"Chappell Roan", album:"The Rise and Fall", duration:218, emoji:"🎭", color:"g6" },
-  { id:12, title:"Flowers", artist:"Miley Cyrus", album:"Endless Summer", duration:200, emoji:"🌸", color:"g1" },
-  { id:13, title:"As It Was", artist:"Harry Styles", album:"Harry's House", duration:167, emoji:"🏠", color:"g2" },
-  { id:14, title:"Anti-Hero", artist:"Taylor Swift", album:"Midnights", duration:200, emoji:"🌙", color:"g3" },
-  { id:15, title:"Levitating", artist:"Dua Lipa", album:"Future Nostalgia", duration:203, emoji:"✨", color:"g4" },
+  { id:0, title:"Move - Yeh Ishq Ishq", artist:"Dhurandhar", album:"Dhurandhar OST", duration:192, emoji:"🔥", color:"g1", url: "music/Move - Yeh Ishq Ishq - Dhurandhar (128 kbps).mp3" },
+  { id:1, title:"Dhurandhar - Title Track", artist:"Dhurandhar", album:"Dhurandhar OST", duration:161, emoji:"⚡", color:"g2", url: "music/Dhurandhar - Title Track - Dhurandhar (128 kbps).mp3" },
+  { id:2, title:"Blinding Lights", artist:"The Weeknd", album:"After Hours", duration:200, emoji:"🌙", color:"g3", url: "music/blinding_lights.mp3" },
+  { id:3, title:"Starboy", artist:"The Weeknd", album:"Starboy", duration:230, emoji:"⭐", color:"g4", url: "music/starboy.mp3" },
+  { id:4, title:"Save Your Tears", artist:"The Weeknd", album:"After Hours", duration:215, emoji:"💧", color:"g5", url: "music/save_your_tears.mp3" },
+  { id:5, title:"Midnight Drive", artist:"The Weeknd", album:"Dawn FM", duration:252, emoji:"🚗", color:"g6", url: "music/midnight_drive.mp3" },
+  { id:6, title:"Die For You", artist:"The Weeknd", album:"Starboy", duration:260, emoji:"❤️", color:"g1", url: "music/die_for_you.mp3" },
+  { id:7, title:"Take My Breath", artist:"The Weeknd", album:"Dawn FM", duration:221, emoji:"🌬️", color:"g2", url: "music/take_my_breath.mp3" },
+  { id:8, title:"Sacrifice", artist:"The Weeknd", album:"Dawn FM", duration:190, emoji:"🔥", color:"g3", url: "music/sacrifice.mp3" },
+  { id:9, title:"Out of Time", artist:"The Weeknd", album:"Dawn FM", duration:210, emoji:"⏳", color:"g4", url: "music/out_of_time.mp3" },
+  { id:10, title:"Gasoline", artist:"The Weeknd", album:"Dawn FM", duration:235, emoji:"⛽", color:"g5", url: "music/gasoline.mp3" },
+  { id:11, title:"Is There Someone Else?", artist:"The Weeknd", album:"Dawn FM", duration:195, emoji:"🔮", color:"g6", url: "music/is_there_someone_else.mp3" },
+  { id:12, title:"Espresso", artist:"Sabrina Carpenter", album:"Short n' Sweet", duration:175, emoji:"☕", color:"g1", url: "music/espresso.mp3" },
+  { id:13, title:"Good Luck, Babe!", artist:"Chappell Roan", album:"The Rise and Fall", duration:218, emoji:"🎭", color:"g2", url: "music/good_luck_babe.mp3" },
+  { id:14, title:"Flowers", artist:"Miley Cyrus", album:"Endless Summer", duration:200, emoji:"🌸", color:"g3", url: "music/flowers.mp3" },
+  { id:15, title:"As It Was", artist:"Harry Styles", album:"Harry's House", duration:167, emoji:"🏠", color:"g4", url: "music/as_it_was.mp3" }
 ];
 
 const PLAYLISTS = [
-  { name:"Chill Vibes", emoji:"🌙", tracks:[0,2,7,10,15], color:"g1" },
-  { name:"Workout", emoji:"💪", tracks:[1,3,6,8,11], color:"g3" },
-  { name:"Late Night Drive", emoji:"🚗", tracks:[3,4,5,9,13], color:"g4" },
-  { name:"Focus Mode", emoji:"🎯", tracks:[7,10,12,14,15], color:"g2" },
+  { name:"Dhurandhar Hits", emoji:"🎬", tracks:[0,1], color:"g1" },
+  { name:"Chill Vibes", emoji:"🌙", tracks:[2,4,9,12], color:"g2" },
+  { name:"Workout", emoji:"💪", tracks:[0,3,5,8,10], color:"g3" },
+  { name:"Late Night Drive", emoji:"🚗", tracks:[1,5,6,7,11], color:"g4" }
 ];
 
 const GENRES = [
-  { name:"Hip-Hop", color:"#1a1030" },
+  { name:"Soundtracks", color:"#1a1030" },
   { name:"Pop", color:"#0a1520" },
   { name:"R&B", color:"#201010" },
   { name:"Electronic", color:"#0a1f10" },
   { name:"Indie", color:"#180818" },
-  { name:"Jazz", color:"#1a1000" },
-  { name:"Classical", color:"#101520" },
-  { name:"Latin", color:"#0d1a0d" },
+  { name:"Jazz", color:"#1a1000" }
 ];
 
 // ── State ──
 let currentTrack = null;
 let isPlaying = false;
-let currentTime = 0;
 let shuffle = false;
 let repeat = false;
 let muted = false;
 let volume = 0.7;
 let likedTracks = new Set();
-let timer = null;
 let queue = [...TRACKS.map(t => t.id)];
+
+const audioPlayer = new Audio();
 
 // ── Init ──
 function init() {
@@ -846,10 +836,19 @@ function init() {
   renderGenreGrid();
   renderLibrary();
   renderSidebarPlaylists();
+  
+  audioPlayer.volume = volume;
+  audioPlayer.addEventListener('timeupdate', updateProgress);
+  audioPlayer.addEventListener('ended', handleTrackEnded);
+  audioPlayer.addEventListener('loadedmetadata', () => {
+    document.getElementById('time-total').textContent = formatTime(audioPlayer.duration);
+  });
+
   updateVolumeUI();
 }
 
 function formatTime(s) {
+  if (isNaN(s)) return "0:00";
   const m = Math.floor(s / 60);
   const sec = Math.floor(s % 60);
   return `${m}:${sec.toString().padStart(2, '0')}`;
@@ -858,7 +857,7 @@ function formatTime(s) {
 // ── Render helpers ──
 function renderRecentCards() {
   const el = document.getElementById('recent-cards');
-  const recent = [0,1,2,3,5,14];
+  const recent = [0,1,2,3,4,5];
   el.innerHTML = recent.map(id => {
     const t = TRACKS[id];
     return `<div class="album-card" onclick="playTrack(${t.id})">
@@ -874,23 +873,23 @@ function renderRecentCards() {
 
 function renderHomeTracklist() {
   const el = document.getElementById('home-tracklist');
-  el.innerHTML = TRACKS.slice(0,8).map((t,i) => trackRowHTML(t, i+1)).join('');
+  el.innerHTML = TRACKS.slice(0,10).map((t,i) => trackRowHTML(t, i+1)).join('');
 }
 
 function trackRowHTML(t, num) {
   const liked = likedTracks.has(t.id);
   const isNow = currentTrack && currentTrack.id === t.id;
-  return `<div class="track-row${isNow ? ' playing' : ''}" id="row-${t.id}">
-    <div class="track-num" onclick="playTrack(${t.id})">${isNow ? `<div class="playing-bars"><span></span><span></span><span></span></div>` : num}</div>
-    <div class="t-play-icon" onclick="playTrack(${t.id})"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-    <div class="track-info" onclick="playTrack(${t.id})">
+  return `<div class="track-row${isNow ? ' playing' : ''}" id="row-${t.id}" onclick="playTrack(${t.id})">
+    <div class="track-num">${isNow && isPlaying ? `<div class="playing-bars"><span></span><span></span><span></span></div>` : num}</div>
+    <div class="t-play-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+    <div class="track-info">
       <div class="t-art ${t.color}" style="font-size:16px;">${t.emoji}</div>
-      <div>
+      <div style="min-width:0;">
         <div class="t-name">${t.title}</div>
         <div class="t-artist">${t.artist}</div>
       </div>
     </div>
-    <div class="t-like${liked ? ' liked' : ''}" onclick="toggleLike(${t.id})">
+    <div class="t-like${liked ? ' liked' : ''}" onclick="toggleLike(${t.id}); event.stopPropagation();">
       <svg viewBox="0 0 24 24" fill="${liked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
         <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
       </svg>
@@ -946,38 +945,48 @@ function renderSidebarPlaylists() {
 // ── Playback ──
 function playTrack(id) {
   currentTrack = TRACKS[id];
-  currentTime = 0;
-  isPlaying = true;
-  clearInterval(timer);
-  timer = setInterval(tick, 1000);
-  updatePlayerUI();
-  updateAllTrackRows();
-  showToast(`Playing: ${currentTrack.title}`);
+  audioPlayer.src = currentTrack.url;
+  audioPlayer.load();
+  
+  audioPlayer.play()
+    .then(() => {
+      isPlaying = true;
+      updatePlayerUI();
+      updateAllTrackRows();
+      showToast(`Playing: ${currentTrack.title}`);
+    })
+    .catch(error => {
+      console.error("Playback failed. Verify that audio files exist inside the music/ directory:", error);
+      showToast(`Cannot locate asset file for: ${currentTrack.title}`);
+    });
 }
 
-function tick() {
-  if (!isPlaying || !currentTrack) return;
-  currentTime++;
-  if (currentTime >= currentTrack.duration) {
-    if (repeat) { currentTime = 0; }
-    else { nextTrack(); return; }
+function handleTrackEnded() {
+  if (repeat) {
+    audioPlayer.currentTime = 0;
+    audioPlayer.play();
+  } else {
+    nextTrack();
   }
-  updateProgress();
 }
 
 function togglePlay() {
   if (!currentTrack) { playTrack(0); return; }
-  isPlaying = !isPlaying;
+  
   if (isPlaying) {
-    clearInterval(timer);
-    timer = setInterval(tick, 1000);
+    audioPlayer.pause();
+    isPlaying = false;
   } else {
-    clearInterval(timer);
+    audioPlayer.play().catch(e => console.log(e));
+    isPlaying = true;
   }
+  
   const icon = document.getElementById('play-icon');
   icon.innerHTML = isPlaying
     ? '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>'
     : '<path d="M8 5v14l11-7z"/>';
+    
+  updateAllTrackRows();
 }
 
 function nextTrack() {
@@ -990,7 +999,10 @@ function nextTrack() {
 
 function prevTrack() {
   if (!currentTrack) return;
-  if (currentTime > 3) { currentTime = 0; updateProgress(); return; }
+  if (audioPlayer.currentTime > 3) { 
+    audioPlayer.currentTime = 0; 
+    return; 
+  }
   let idx = queue.indexOf(currentTrack.id);
   idx = (idx - 1 + queue.length) % queue.length;
   playTrack(queue[idx]);
@@ -1008,6 +1020,7 @@ function toggleRepeat() {
 
 function toggleMute() {
   muted = !muted;
+  audioPlayer.muted = muted;
   updateVolumeUI();
 }
 
@@ -1016,6 +1029,8 @@ function setVolume(e) {
   const rect = track.getBoundingClientRect();
   volume = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
   muted = false;
+  audioPlayer.muted = false;
+  audioPlayer.volume = volume;
   updateVolumeUI();
 }
 
@@ -1023,23 +1038,30 @@ function updateVolumeUI() {
   const fill = document.getElementById('vol-fill');
   const v = muted ? 0 : volume;
   fill.style.width = (v * 100) + '%';
+  
+  const volWaves = document.getElementById('vol-waves');
+  if (v === 0) {
+    volWaves.style.opacity = '0.3';
+  } else {
+    volWaves.style.opacity = '1';
+  }
 }
 
+// Continuous fluid visual bar updates
 function seekTo(e) {
-  if (!currentTrack) return;
+  if (!currentTrack || !audioPlayer.duration) return;
   const track = document.getElementById('progress-track');
   const rect = track.getBoundingClientRect();
   const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-  currentTime = Math.floor(pct * currentTrack.duration);
-  updateProgress();
+  audioPlayer.currentTime = pct * audioPlayer.duration;
 }
 
 function updateProgress() {
-  if (!currentTrack) return;
-  const pct = (currentTime / currentTrack.duration) * 100;
+  if (!currentTrack || !audioPlayer.duration) return;
+  const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('progress-thumb').style.right = (100 - pct) + '%';
-  document.getElementById('time-current').textContent = formatTime(currentTime);
+  document.getElementById('time-current').textContent = formatTime(audioPlayer.currentTime);
 }
 
 function updatePlayerUI() {
@@ -1048,9 +1070,8 @@ function updatePlayerUI() {
   document.getElementById('player-art').className = 'player-art ' + currentTrack.color;
   document.getElementById('player-name').textContent = currentTrack.title;
   document.getElementById('player-artist').textContent = currentTrack.artist;
-  document.getElementById('time-total').textContent = formatTime(currentTrack.duration);
-  document.getElementById('time-current').textContent = '0:00';
-  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('time-total').textContent = formatTime(audioPlayer.duration);
+  
   const icon = document.getElementById('play-icon');
   icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
   updateLikeButton();
@@ -1059,11 +1080,16 @@ function updatePlayerUI() {
 function updateAllTrackRows() {
   document.querySelectorAll('.track-row').forEach(row => {
     const id = parseInt(row.id.replace('row-', ''));
-    row.classList.toggle('playing', currentTrack && currentTrack.id === id);
+    const matchesCurrent = currentTrack && currentTrack.id === id;
+    row.classList.toggle('playing', matchesCurrent && isPlaying);
+    
     const numEl = row.querySelector('.track-num');
     if (numEl) {
-      if (currentTrack && currentTrack.id === id) {
+      if (matchesCurrent && isPlaying) {
         numEl.innerHTML = `<div class="playing-bars"><span></span><span></span><span></span></div>`;
+      } else {
+        const index = TRACKS.findIndex(t => t.id === id);
+        numEl.innerHTML = index + 1;
       }
     }
   });
