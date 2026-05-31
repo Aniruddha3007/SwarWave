@@ -89,7 +89,7 @@ input, textarea { -webkit-user-select: text; user-select: text; }
 
 /* ══ SIDEBAR ══ */
 .logo { padding: 24px 20px 16px; display: flex; align-items: center; gap: 10px; }
-.logo-mark { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.logo-mark { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 .logo-mark svg { width: 16px; height: 16px; }
 .logo-name { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
 .nav-section { padding: 8px 12px; }
@@ -282,6 +282,7 @@ input, textarea { -webkit-user-select: text; user-select: text; }
 .vol-fill { height: 100%; background: var(--text2); border-radius: 4px; width: 70%; }
 
 /* ══ SEARCH ══ */
+/* Note: Genre grid styling retained for prospective query matching architecture references */
 .genre-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(120px,1fr)); gap: 12px; margin-bottom: 32px; }
 .genre-tile { height: 70px; border-radius: var(--radius); display: flex; align-items: flex-end; padding: 10px 12px; cursor: pointer; overflow: hidden; transition: transform 0.2s; }
 .genre-tile:active { transform: scale(0.97); }
@@ -485,7 +486,7 @@ input, textarea { -webkit-user-select: text; user-select: text; }
   .nav-item { justify-content: center; padding: 10px; }
   .logo { justify-content: center; padding: 20px 0 12px; }
   .content { padding: 20px 20px; }
-  .topbar { padding: 12px 20px 0; }
+  .topbar { padding: 12px 20px 0; gap: 8px; }
   .search-wrap { width: 180px; }
   .np-body { gap: 36px; }
   .np-art { width: 240px; height: 240px; font-size: 72px; }
@@ -773,8 +774,6 @@ input, textarea { -webkit-user-select: text; user-select: text; }
       <div class="page" id="page-search">
         <div class="section-title">Search</div>
         <div class="section-sub">Find your next favourite track</div>
-        <div class="row-header"><div class="row-title">Browse Genres</div></div>
-        <div class="genre-grid" id="genre-grid"></div>
         <div id="search-results-wrap" style="display:none;">
           <div class="row-header"><div class="row-title" id="search-results-title">Results</div></div>
           <div class="track-list" id="search-tracklist"></div>
@@ -882,17 +881,9 @@ let isMobile=false;
 const EMOJIS=['🎵','🎶','🎸','🎹','🥁','🎺','🎻','🎤','🎧','🔥','⚡','💫','🌊','🌙','✨','🎬','🎯','🎼'];
 const COLORS=['g1','g2','g3','g4','g5'];
 const GLOW_COLORS={g1:'rgba(100,60,200,0.22)',g2:'rgba(60,180,100,0.22)',g3:'rgba(200,60,60,0.22)',g4:'rgba(60,120,200,0.22)',g5:'rgba(200,180,60,0.22)'};
-const GENRES=[
-  {name:'Pop',color:'#0a1520'},{name:'Hip-Hop',color:'#201010'},
-  {name:'Electronic',color:'#101020'},{name:'Rock',color:'#1a0a0a'},
-  {name:'Soundtracks',color:'#1a1030'},{name:'Jazz',color:'#0a1a12'},
-  {name:'Classical',color:'#1a1a0a'},{name:'R&B',color:'#1a0a18'},
-  {name:'Folk',color:'#0f1a0a'},{name:'Metal',color:'#1a0f0a'},
-];
 
 const AUDIO=new Audio();
 AUDIO.volume=volume;
-// Android Chrome requires user gesture for audio context - handled naturally
 
 // CD SVG fallback
 const CD_SVG=`<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
@@ -1182,7 +1173,7 @@ function updateFolderBanner(){
 // ════════════════════════════════════════════
 // RENDER
 // ════════════════════════════════════════════
-function renderAll(){renderRecentCards();renderHomeTracklist();renderGenreGrid();renderLibrary();renderSidebarPlaylists();if(npOpen)updateNPView();}
+function renderAll(){renderRecentCards();renderHomeTracklist();renderLibrary();renderSidebarPlaylists();if(npOpen)updateNPView();}
 function displayTracks(){if(sortAZ)return[...TRACKS].sort((a,b)=>a.title.localeCompare(b.title));return[...TRACKS];}
 
 function renderRecentCards(){
@@ -1217,14 +1208,6 @@ function rowHTML(t,num){
     <div class="t-duration">${fmt(t.duration)}</div>
   </div>`;
 }
-
-function renderGenreGrid(){
-  document.getElementById('genre-grid').innerHTML=GENRES.map(g=>`
-    <div class="genre-tile" style="background:${g.color};" onclick="searchGenre('${g.name}')">
-      <div class="genre-tile-name">${g.name}</div>
-    </div>`).join('');
-}
-function searchGenre(name){document.getElementById('search-input').value=name;handleSearch(name);showPage('search',document.getElementById('nav-search'));syncBN('bn-search');}
 
 function renderLibrary(){
   const pl=document.getElementById('lib-playlists');
@@ -1283,6 +1266,9 @@ function togglePlay(){
   if(npOpen)document.getElementById('np-status-label').textContent=isPlaying?'Playing':'Paused';
 }
 
+// Global scope initialization parameters retained for standard traversal maps
+function renderGenreGrid(){} 
+
 function nextTrack(){
   const q=getQueue();if(!q.length)return;
   let idx=q.indexOf(currentTrackId);
@@ -1334,6 +1320,9 @@ function updatePlayIcons(){
   document.getElementById('np-play-icon').innerHTML=icon;
   const mi=document.getElementById('mobile-play-icon');if(mi)mi.innerHTML=icon;
 }
+
+// Traversal hooks mapped directly to primary interface lists
+function searchGenre(name){document.getElementById('search-input').value=name;handleSearch(name);showPage('search',document.getElementById('nav-search'));syncBN('bn-search');}
 
 function updateAllRows(){
   document.querySelectorAll('.track-row').forEach(row=>{
@@ -1683,7 +1672,7 @@ function init(){
   checkMobile();
   window.addEventListener('resize',checkMobile);
 
-  renderGenreGrid();renderSidebarPlaylists();updateFolderBanner();updateVolUI();updateNPVolUI();
+  renderSidebarPlaylists();updateFolderBanner();updateVolUI();updateNPVolUI();
   initDrag();initSwipeClose();initLongPress();
 
   AUDIO.addEventListener('timeupdate',updateProgress);
